@@ -1,6 +1,6 @@
-import DropDown from './DropDown'
+import Dropdown from './Dropdown'
 import Hero from '../pages/Home'
 import Navbar from './Navbar'
 import Footer from './Footer'
 
-export { DropDown, Hero, Navbar, Footer }
+export { Dropdown, Hero, Navbar, Footer }
