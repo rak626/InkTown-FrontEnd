@@ -12,7 +12,7 @@ function Navbar() {
                     <img
                         src={Logo}
                         alt='InkTown'
-                        className='w-20 h-20 rounded-full'
+                        className='w-20 h-20 rounded-full object-cover'
                     />
                 </Link>
                 <ul className='flex space-x-4'>

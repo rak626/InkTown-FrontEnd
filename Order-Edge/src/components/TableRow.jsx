@@ -2,28 +2,38 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Dropdown from './Dropdown'
 import Button from './Button'
-import useSendPost from '../hooks/useSendPost'
+import { useDispatch, useSelector } from 'react-redux'
+import { options } from '../utils/sampleData'
+import { sendApiDetails } from '../utils/apiUtil'
 
 function TableRow({ orderData }) {
-    const options = [
-        { label: 'New', value: 0 },
-        { label: 'InProgress', value: 2 },
-        { label: 'Pending', value: 1 },
-        { label: 'Assigned', value: 3 },
-    ]
     const [selectedOption, setSelectedOption] = useState(orderData.orderStatus)
-    const [buttonDisabled, setButtonDisabled] = useState(true)
-    const url = ''
-    function handleButtonClick() {
-        // const {data, loading, error} = useSendPost(url, {selectedOption})
-        // console.log(data);
-        console.log(
-            'saveStatusHappened.... with selectedOption : ' + selectedOption
+    const [buttonDisable, setButtonDisabled] = useState(true)
+    const selections = useSelector((state) => state.orderStatusList)
+    const savedOrderLists = useSelector((state) => state.orderList)
+
+    const savedOrderList = savedOrderLists.filter(
+        (order) => order.orderId === orderData.orderId
+    )[0]
+    // console.log(selectedOption, buttonDisable)
+    const reqBody = {
+        userId: '7d7603e1-0fa6-457f-8721-0a7fadc1b5ff',
+        orderId: orderData.orderId,
+        status: parseInt(selectedOption),
+    }
+    const headers = {
+        'Content-Type': 'application/json',
+    }
+    function handleButtonClick(e) {
+        sendApiDetails('/order/updateStatus', headers, reqBody).catch((err) =>
+            console.log(`this is error: -> ` + savedOrderList)
         )
     }
-    const handleSelectChange = (option) => {
-        setSelectedOption(prev => option)
-        setButtonDisabled(option === selectedOption)
+    const handleSelectChange = (e) => {
+        if (e.target.value !== savedOrderList.orderStatus) {
+            setSelectedOption(e.target.value)
+            setButtonDisabled(false)
+        }
     }
     return (
         <>
@@ -38,20 +48,25 @@ function TableRow({ orderData }) {
                 {orderData.orderName}
             </td>
             <td className='px-6 py-4 whitespace-nowrap'>
-                {orderData.assignedTo}
+                {orderData.assignedTo === 'SYSTEM'
+                    ? 'Not Assigned'
+                    : orderData.assignedTo}
+            </td>
+            <td className='px-6 py-4 whitespace-nowrap'>
+                {orderData.isUrgent ? 'Yes' : 'No'}
             </td>
             <td className='px-6 py-4 whitespace-nowrap'>
                 <Dropdown
                     defaultOption={selectedOption}
-                    options={options}
-                    onChange={handleSelectChange}
+                    options={selections?.length > 0 ? selections : options}
+                    onChangeHandler={handleSelectChange}
                 />
             </td>
             <td className='px-6 py-4 whitespace-nowrap'>
                 <Button
-                    cssClasses='bg-green-500'
                     onClick={handleButtonClick}
-                    isDisabled={buttonDisabled}>
+                    isDisabled={buttonDisable}
+                    cssClasses={buttonDisable ? 'bg-gray-500' : 'bg-green-500'}>
                     Save
                 </Button>
             </td>

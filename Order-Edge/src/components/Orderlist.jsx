@@ -1,10 +1,12 @@
 import React from 'react'
 import TableRow from './TableRow'
+import { useDispatch } from 'react-redux'
+import { addAllOrders } from '../features/orderSlice'
 
 function Orderlist({ orderDataList }) {
     return (
         <div className='overflow-x-auto'>
-            <table className='min-w-full divide-y divide-gray-200'>
+            <table className='min-w-full divide-y divide-gray-200 border border-slate-700'>
                 <thead className='bg-gray-50'>
                     <tr>
                         <th
@@ -21,6 +23,11 @@ function Orderlist({ orderDataList }) {
                             scope='col'
                             className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
                             AssignTo
+                        </th>
+                        <th
+                            scope='col'
+                            className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                            Urgent
                         </th>
                         <th
                             scope='col'
