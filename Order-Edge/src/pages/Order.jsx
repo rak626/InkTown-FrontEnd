@@ -57,7 +57,7 @@ function Order() {
                 <div className='flex-grow'>
                     <Tablelabel
                         label='List of Orders'
-                        cssClasses='text-green-600'
+                        className='text-green-600'
                     />
                 </div>
                 <div className='flex-grow flex justify-evenly'>
@@ -70,7 +70,7 @@ function Order() {
                             ...selections,
                         ]}
                         defaultOption={-1}
-                        cssClasses=''
+                        className=''
                         width='w-1/3'
                         onChangeHandler={handleSelectionChangeFilter}
                     />

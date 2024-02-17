@@ -66,7 +66,7 @@ function TableRow({ orderData }) {
                 <Button
                     onClick={handleButtonClick}
                     isDisabled={buttonDisable}
-                    cssClasses={buttonDisable ? 'bg-gray-500' : 'bg-green-500'}>
+                    className={buttonDisable ? 'bg-gray-500' : 'bg-green-500'}>
                     Save
                 </Button>
             </td>

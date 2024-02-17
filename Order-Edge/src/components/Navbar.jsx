@@ -111,7 +111,7 @@ function Navbar() {
                 </ul>
                 <div className='flex items-center gap-8'>
                     <Link to='/orders/createOrder'>
-                        <Button cssClasses=''>Create Order</Button>
+                        <Button className='bg-red-500 hover:bg-red-800 transition duration-300'>Create Order</Button>
                     </Link>
                     <div className='relative inline-block'>
                         <button

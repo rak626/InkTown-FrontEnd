@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import HeroSectionImage from '../assets/image/hero.jpg'
+import Button from '../components/Button'
 
 function Home() {
     return (
@@ -14,9 +16,11 @@ function Home() {
                         custom printing on T-shirts, mementos, and more. Unleash
                         your creativity and let your colors shine.
                     </p>
-                    <button className='bg-orange-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-600 transition duration-300'>
-                        Start Creating
-                    </button>
+                    <Link to='/orders/createOrder'>
+                        <Button className='bg-red-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-red-800 transition duration-300'>
+                            Start Creating
+                        </Button>
+                    </Link>
                 </div>
                 <div className='flex-1 relative'>
                     <img
