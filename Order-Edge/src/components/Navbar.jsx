@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Link, NavLink } from 'react-router-dom'
 import Logo from '../assets/image/InkTownLogo.png'
+import Button from './Button'
 
 function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -19,40 +20,99 @@ function Navbar() {
                     <li>
                         <NavLink
                             to='/home'
-                            className={({isActive}) =>` hover:bg-gray-300 ${isActive ? `text-orange-700`: `text-gray-700`} px-2 py-1 rounded`}>
+                            className={({ isActive }) =>
+                                ` hover:bg-gray-300 ${
+                                    isActive
+                                        ? `text-orange-700`
+                                        : `text-gray-700`
+                                } px-2 py-1 rounded`
+                            }>
                             Home
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
                             to='/orders'
-                            className={({isActive}) =>` hover:bg-gray-300 ${isActive ? `text-orange-700`: `text-gray-700`} px-2 py-1 rounded`}>
+                            className={({ isActive }) =>
+                                ` hover:bg-gray-300 ${
+                                    isActive
+                                        ? `text-orange-700`
+                                        : `text-gray-700`
+                                } px-2 py-1 rounded`
+                            }>
                             Orders
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink
                             to='/customers'
-                            className={({isActive}) =>` hover:bg-gray-300 ${isActive ? `text-orange-700`: `text-gray-700`} px-2 py-1 rounded`}>
+                            className={({ isActive }) =>
+                                ` hover:bg-gray-300 ${
+                                    isActive
+                                        ? `text-orange-700`
+                                        : `text-gray-700`
+                                } px-2 py-1 rounded`
+                            }>
                             Customers
                         </NavLink>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                         <NavLink
                             to='/products'
-                            className={({isActive}) =>` hover:bg-gray-300 ${isActive ? `text-orange-700`: `text-gray-700`} px-2 py-1 rounded`}>
+                            className={({ isActive }) =>
+                                ` hover:bg-gray-300 ${
+                                    isActive
+                                        ? `text-orange-700`
+                                        : `text-gray-700`
+                                } px-2 py-1 rounded`
+                            }>
                             Products
+                        </NavLink>
+                    </li> */}
+                    {/* <li>
+                        <NavLink
+                            to='/reports'
+                            className={({ isActive }) =>
+                                ` hover:bg-gray-300 ${
+                                    isActive
+                                        ? `text-orange-700`
+                                        : `text-gray-700`
+                                } px-2 py-1 rounded`
+                            }>
+                            Reports
+                        </NavLink>
+                    </li> */}
+                    <li>
+                        <NavLink
+                            to='/about'
+                            className={({ isActive }) =>
+                                ` hover:bg-gray-300 ${
+                                    isActive
+                                        ? `text-orange-700`
+                                        : `text-gray-700`
+                                } px-2 py-1 rounded`
+                            }>
+                            About Us
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
-                            to='/reports'
-                            className={({isActive}) =>` hover:bg-gray-300 ${isActive ? `text-orange-700`: `text-gray-700`} px-2 py-1 rounded`}>
-                            Reports
+                            to='/contact'
+                            className={({ isActive }) =>
+                                ` hover:bg-gray-300 ${
+                                    isActive
+                                        ? `text-orange-700`
+                                        : `text-gray-700`
+                                } px-2 py-1 rounded`
+                            }>
+                            Contact Us
                         </NavLink>
                     </li>
                 </ul>
-                <div className='flex items-center'>
+                <div className='flex items-center gap-8'>
+                    <Link to='/orders/createOrder'>
+                        <Button cssClasses=''>Create Order</Button>
+                    </Link>
                     <div className='relative inline-block'>
                         <button
                             onClick={() => setIsOpen(!isOpen)}

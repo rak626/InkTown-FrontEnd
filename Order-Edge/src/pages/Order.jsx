@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Tablelabel from '../components/Tablelabel'
-import DropDown from '../components/Dropdown'
-import Button from '../components/Button'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Button from '../components/Button'
+import DropDown from '../components/Dropdown'
 import Orderlist from '../components/Orderlist'
-import { useSelector, useDispatch } from 'react-redux'
-import orderSlice, {
-    addAllOrders,
-    addOrderToFilter,
-    getAllOrderStatus,
+import Tablelabel from '../components/Tablelabel'
+import {
+    addOrderToFilter
 } from '../features/orderSlice'
-import { fetchApiDetails, fetchApiDetailsWithParams } from '../utils/apiUtil'
-import { options, sampleData } from '../utils/sampleData'
+import { fetchApiDetailsWithParams } from '../utils/apiUtil'
 
 function Order() {
     console.log('rendering...')
@@ -77,9 +74,6 @@ function Order() {
                         width='w-1/3'
                         onChangeHandler={handleSelectionChangeFilter}
                     />
-                    <Link to='/orders/createOrder'>
-                        <Button cssClasses=''>Create Order</Button>
-                    </Link>
                 </div>
             </div>
             <div className='container'>

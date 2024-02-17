@@ -16,7 +16,8 @@ import {
 } from './pages'
 import OrderFlow from './pages/OrderFlow'
 import CreateOrderPage from './pages/CreateOrderPage'
-
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -25,10 +26,11 @@ const router = createBrowserRouter(
             <Route path='orders' element={<Order />} />
             <Route path='orders/:orderId' element={<OrderFlow />} />
             <Route path='orders/createOrder' element={<CreateOrderPage />} />
-            <Route path='customers' element={<Customer />} />
+            {/* <Route path='customers' element={<Customer />} />
             <Route path='products' element={<Product />} />
-            <Route path='reports' element={<Report />} />
-            <Route path='customers' element={<Customer />} />
+            <Route path='reports' element={<Report />} /> */}
+            <Route path='about' element={<About />} />
+            <Route path='contact' element={<Contact />} />
             <Route path='profile' element={<Profile />} />
             <Route path='logout' element={<Login />} />
             <Route path='signup' element={<Signup />} />
