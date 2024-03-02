@@ -1,16 +1,14 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getOrder } from '../features/orderSlice'
 
 const OrderFlow = () => {
     const { orderId } = useParams()
-    const dispatch = useDispatch()
     // const order = useSelector((state) => state.orderList)
     const order = [{ id: 1, status: 'new', updatedAt: '2021-02-01' }]
 
     const orderList = useSelector((state) => state.orderList)
-    const orderStatusList = useSelector((state) => state.orderStatusList)
+    // const orderStatusList = useSelector((state) => state.orderStatusList)
     console.log(orderList)
     const savedOrder = orderList.filter((order) => order.orderId === orderId)[0]
 
@@ -31,20 +29,17 @@ const OrderFlow = () => {
                     <h1 className='text-xl m-4'>{savedOrder?.orderId}</h1>
                 </div>
             </div>
-            {order &&
-                order.map((step) => (
-                    <div key={step.id} className='border rounded-md p-4 mb-4'>
-                        <div className='flex justify-between items-center mb-2'>
-                            <div className='font-semibold'>{step.status}</div>
-                            <div className='text-gray-500'>
-                                {step.updatedAt}
-                            </div>
-                        </div>
-                        <div className='text-sm text-gray-600'>
-                            Performed by: {step.performedBy}
-                        </div>
+            {order?.map((step) => (
+                <div key={step.id} className='border rounded-md p-4 mb-4'>
+                    <div className='flex justify-between items-center mb-2'>
+                        <div className='font-semibold'>{step.status}</div>
+                        <div className='text-gray-500'>{step.updatedAt}</div>
                     </div>
-                ))}
+                    <div className='text-sm text-gray-600'>
+                        Performed by: {step.performedBy}
+                    </div>
+                </div>
+            ))}
         </div>
     )
 }

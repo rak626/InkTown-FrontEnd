@@ -8,9 +8,6 @@ import {
     Layout,
     Login,
     Profile,
-    Customer,
-    Product,
-    Report,
     Signup,
     Home,
 } from './pages'

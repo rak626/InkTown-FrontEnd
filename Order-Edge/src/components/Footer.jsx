@@ -8,11 +8,7 @@ function Footer() {
                 <div className='md:flex md:justify-between'>
                     <div className='mb-6 md:mb-0'>
                         <Link to='/' className='flex items-center'>
-                            <img
-                                src={Logo}
-                                className='mr-3 h-16'
-                                alt='Logo'
-                            />
+                            <img src={Logo} className='mr-3 h-16' alt='Logo' />
                         </Link>
                     </div>
                     <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
@@ -78,7 +74,7 @@ function Footer() {
                 <hr className='my-6 border-gray-200 sm:mx-auto lg:my-8' />
                 <div className='sm:flex sm:items-center sm:justify-between'>
                     <span className='text-sm text-gray-500 sm:text-center'>
-                        © 2024 &nbsp; 
+                        © 2024 &nbsp;
                         <a
                             href='https://hiteshchoudhary.com/'
                             className='hover:underline'>

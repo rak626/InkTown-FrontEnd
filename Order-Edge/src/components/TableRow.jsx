@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Dropdown from './Dropdown'
-import Button from './Button'
-import { useDispatch, useSelector } from 'react-redux'
-import { options } from '../utils/sampleData'
 import { sendApiDetails } from '../utils/apiUtil'
+import { options } from '../utils/sampleData'
+import Button from './Button'
+import Dropdown from './Dropdown'
 
 function TableRow({ orderData }) {
     const [selectedOption, setSelectedOption] = useState(orderData.orderStatus)
-    const [buttonDisable, setButtonDisabled] = useState(true)
+    const [buttonDisable, setButtonDisabled] = useState(false)
     const selections = useSelector((state) => state.orderStatusList)
     const savedOrderLists = useSelector((state) => state.orderList)
 
@@ -73,5 +74,15 @@ function TableRow({ orderData }) {
         </>
     )
 }
+
+TableRow.propTypes = {
+  orderData: PropTypes.shape({
+    orderStatus: PropTypes.string,
+    orderId: PropTypes.string,
+    orderName: PropTypes.string,
+    assignedTo: PropTypes.string,
+    isUrgent: PropTypes.bool,
+  }).isRequired,
+};
 
 export default TableRow

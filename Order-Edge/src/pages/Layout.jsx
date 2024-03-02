@@ -33,6 +33,10 @@ function Layout() {
         fetchAllOrder('/order/getAll')
         fetchAllOrderStatus('/order/getDisplayStatusList')
     }, [])
+
+    if (loading) {
+        return <h1>loading....</h1>
+    }
     return (
         <>
             <Navbar />
