@@ -9,7 +9,7 @@ import Dropdown from './Dropdown'
 
 function TableRow({ orderData }) {
     const [selectedOption, setSelectedOption] = useState(orderData.orderStatus)
-    const [buttonDisable, setButtonDisabled] = useState(false)
+    const [buttonDisable, setButtonDisabled] = useState(true)
     const selections = useSelector((state) => state.orderStatusList)
     const savedOrderLists = useSelector((state) => state.orderList)
 
@@ -29,6 +29,7 @@ function TableRow({ orderData }) {
         sendApiDetails('/order/updateStatus', headers, reqBody).catch((err) =>
             console.log(`this is error: -> ` + savedOrderList)
         )
+        setButtonDisabled(prev => !prev)
     }
     const handleSelectChange = (e) => {
         if (e.target.value !== savedOrderList.orderStatus) {
