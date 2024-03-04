@@ -1,49 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { Footer, Navbar } from '../components'
-import { addAllOrders, getAllOrderStatus } from '../features/orderSlice'
-import { fetchApiDetails } from '../utils/apiUtil'
+import { addAllOrderStatus } from '../features/orderSlice'
+import { fetchAllOrderStatus } from '../utils/apis'
 
 function Layout() {
-    const [loading, setLoading] = useState(false)
-    const dispatch = useDispatch()
-    const fetchAllOrderStatus = (statusUrl) => {
-        setLoading(true)
-        fetchApiDetails(statusUrl, {
-            'Content-Type': 'application/json',
-        })
-            .then((data) => dispatch(getAllOrderStatus(data)))
-            .catch((err) => console.log(err))
-            .finally(setLoading(false))
-    }
-    const fetchAllOrder = (orderUrl) => {
-        setLoading(true)
-        fetchApiDetails(orderUrl, {
-            'Content-Type': 'application/json',
-        })
-            .then((data) => {
-                dispatch(addAllOrders(data))
-            })
-            .catch((err) => console.log(err))
-            .finally(setLoading(false))
-    }
-    useEffect(() => {
-        console.log('calling all order fuction')
-        fetchAllOrder('/order/getAll')
-        fetchAllOrderStatus('/order/getDisplayStatusList')
-    }, [])
+	const {
+		data: orderStatus,
+		isLoading,
+		isError,
+		error,
+	} = useQuery({ queryKey: ['allOrderStatus'], queryFn: fetchAllOrderStatus })
+	const dispatch = useDispatch()
+	dispatch(addAllOrderStatus(orderStatus))
 
-    if (loading) {
-        return <h1>loading....</h1>
-    }
-    return (
-        <>
-            <Navbar />
-            <Outlet />
-            <Footer />
-        </>
-    )
+	if (isLoading) {
+		return <h1>loading....</h1>
+	}
+	if (isError) {
+		return <div>{error.message}</div>
+	}
+	return (
+		<>
+			<Navbar />
+			<Outlet />
+			<Footer />
+		</>
+	)
 }
 
 export default Layout
