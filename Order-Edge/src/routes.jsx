@@ -4,17 +4,17 @@ import {
     createRoutesFromElements,
 } from 'react-router-dom'
 import {
-    Order,
-    Layout,
-    Login,
-    Profile,
-    Signup,
     Home,
+    Layout,
+    Order,
+    Profile
 } from './pages'
-import OrderFlow from './pages/OrderFlow'
-import CreateOrderPage from './pages/CreateOrderPage'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import CreateOrderPage from './pages/CreateOrderPage'
+import LoginPage from './components/Login'
+import OrderFlow from './pages/OrderFlow'
+import SignupPage from './pages/SignupPage'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -29,10 +29,10 @@ const router = createBrowserRouter(
             <Route path='about' element={<About />} />
             <Route path='contact' element={<Contact />} />
             <Route path='profile' element={<Profile />} />
-            <Route path='logout' element={<Login />} />
-            <Route path='signup' element={<Signup />} />
+            <Route path='login' element={<LoginPage />} />
+            <Route path='logout' element />
+            <Route path='signup' element={<SignupPage />} />
         </Route>
     )
 )
-
 export default router

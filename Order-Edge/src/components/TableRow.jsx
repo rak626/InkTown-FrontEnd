@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { updateOrderStatus } from '../utils/apis'
-import { options } from '../utils/sampleData'
+import { options } from '../utils/appData'
 import Button from './Button'
 import Dropdown from './Dropdown'
 
 function TableRow({ orderData = {}, index = 0 }) {
 	const [selectedOption, setSelectedOption] = useState(orderData.orderStatus)
 	const [buttonDisable, setButtonDisabled] = useState(true)
-	const selections = useSelector((state) => state.orderStatus)
+	const selections = useSelector((state) => state.order.orderStatus)
 	const reqBody = {
 		userId: '7d7603e1-0fa6-457f-8721-0a7fadc1b5ff',
 		orderId: orderData.orderId,

@@ -5,7 +5,7 @@ import Tablelabel from '../components/Tablelabel'
 import { changeFilterStatus } from '../features/orderSlice'
 
 function Order() {
-	const filterOptions = useSelector((state) => state.orderStatus)
+	const filterOptions = useSelector((state) => state.order.orderStatus)
 	const dispatch = useDispatch()
 	function handleSelectionChangeFilter(e) {
 		dispatch(changeFilterStatus(parseInt(e.target.value)))

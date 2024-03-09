@@ -6,7 +6,7 @@ const initialState = {
 }
 
 export const orderSlice = createSlice({
-	name: 'orderSlice',
+	name: 'order',
 	initialState,
 	reducers: {
 		addAllOrderStatus: (state, action) => {

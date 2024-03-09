@@ -5,7 +5,7 @@ import { fetchAllOrdersBasedOnOrderStatus } from '../utils/apis'
 import TableRow from './TableRow'
 function Orderlist() {
 	const currentFilterStatus = useSelector(
-		(state) => state.currentFilterStatus
+		(state) => state.order.currentFilterStatus
 	)
 	const [orderList, setOrderList] = useState([])
 	const {
@@ -72,7 +72,7 @@ function Orderlist() {
 				<tbody className="bg-white divide-y divide-gray-200">
 					{orderList?.map((orderData, index) => (
 						<tr key={orderData.orderId}>
-							<TableRow orderData={orderData} index={index} />
+							<TableRow orderData={orderData} index={index + 1} />
 						</tr>
 					))}
 				</tbody>
