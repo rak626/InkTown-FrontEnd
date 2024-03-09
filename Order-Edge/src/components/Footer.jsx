@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../assets/image/InkTownLogo.png'
+import Logo from '/InkTownLogo.svg'
 function Footer() {
     return (
         <footer className='bg-white border-y'>

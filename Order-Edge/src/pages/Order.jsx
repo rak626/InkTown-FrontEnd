@@ -2,13 +2,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import DropDown from '../components/Dropdown'
 import Orderlist from '../components/Orderlist'
 import Tablelabel from '../components/Tablelabel'
-import { changeFilterStatus } from '../features/orderSlice'
+import { addAllOrderStatus, changeFilterStatus } from '../features/orderSlice'
+import { fetchAllOrderStatus } from '../utils/apis'
+import { useQuery } from '@tanstack/react-query'
 
 function Order() {
 	const filterOptions = useSelector((state) => state.order.orderStatus)
 	const dispatch = useDispatch()
 	function handleSelectionChangeFilter(e) {
 		dispatch(changeFilterStatus(parseInt(e.target.value)))
+	}
+	const {
+		data: orderStatus,
+		isLoading,
+		isError,
+		error,
+	} = useQuery({ queryKey: ['allOrderStatus'], queryFn: fetchAllOrderStatus })
+	dispatch(addAllOrderStatus(orderStatus))
+
+	if (isLoading) {
+		return <h1>loading....</h1>
+	}
+	if (isError) {
+		return <div>{error.message}</div>
 	}
 	return (
 		<div className="container mx-auto pt-8 bg-slate-300">

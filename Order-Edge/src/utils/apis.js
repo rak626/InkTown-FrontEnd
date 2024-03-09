@@ -65,3 +65,21 @@ export const fetchOrderLogsByOrderId = async (orderId) => {
 	})
 	return res.data
 }
+
+export const signUp = async (reqData) => {
+	const res = await axios.post(proxyUri + '/authentication/signUp', reqData, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	})
+	return res.data
+}
+
+export const signIn = async (reqData) => {
+	const res = await axios.post(proxyUri + '/authentication/signIn', reqData, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	})
+	return res.data
+}

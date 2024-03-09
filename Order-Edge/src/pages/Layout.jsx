@@ -7,21 +7,6 @@ import { addAllOrderStatus } from '../features/orderSlice'
 import { fetchAllOrderStatus } from '../utils/apis'
 
 function Layout() {
-	const {
-		data: orderStatus,
-		isLoading,
-		isError,
-		error,
-	} = useQuery({ queryKey: ['allOrderStatus'], queryFn: fetchAllOrderStatus })
-	const dispatch = useDispatch()
-	dispatch(addAllOrderStatus(orderStatus))
-
-	if (isLoading) {
-		return <h1>loading....</h1>
-	}
-	if (isError) {
-		return <div>{error.message}</div>
-	}
 	return (
 		<>
 			<Navbar />
@@ -30,5 +15,4 @@ function Layout() {
 		</>
 	)
 }
-
 export default Layout

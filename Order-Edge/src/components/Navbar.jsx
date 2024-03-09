@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import Logo from '../assets/image/InkTownLogo.png'
+import Logo from '/InkTownLogo.svg'
 import Button from './Button'
 import { setAuthentication, setCurrentUser } from '../features/authSlice'
 
@@ -48,10 +48,10 @@ function Navbar() {
 	const handleLogout = () => {
 		dispatch(setAuthentication(false))
 		dispatch(setCurrentUser({}))
-		navigate('/home')
+		navigate('/login')
 	}
 	return (
-		<nav className="w-full flex justify-between items-center gap-8">
+		<nav className="w-full flex justify-between items-center gap-8 bg-gray-200">
 			<div className="left flex justify-between w-2/3 mx-8">
 				<div className="">
 					<Link to="/home" className="logo">

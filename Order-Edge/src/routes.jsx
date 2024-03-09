@@ -12,9 +12,9 @@ import {
 import About from './pages/About'
 import Contact from './pages/Contact'
 import CreateOrderPage from './pages/CreateOrderPage'
-import LoginPage from './components/Login'
 import OrderFlow from './pages/OrderFlow'
 import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
