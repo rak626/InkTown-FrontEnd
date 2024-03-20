@@ -8,16 +8,18 @@ import { useQuery } from '@tanstack/react-query'
 
 function Order() {
 	const filterOptions = useSelector((state) => state.order.orderStatus)
+	const defaultOption = useSelector(state => state.order.currentFilterStatus)
 	const dispatch = useDispatch()
 	function handleSelectionChangeFilter(e) {
 		dispatch(changeFilterStatus(parseInt(e.target.value)))
 	}
+	const token = useSelector(state => state.auth.token)
 	const {
 		data: orderStatus,
 		isLoading,
 		isError,
 		error,
-	} = useQuery({ queryKey: ['allOrderStatus'], queryFn: fetchAllOrderStatus })
+	} = useQuery({ queryKey: ['allOrderStatus'], queryFn: () => fetchAllOrderStatus(token)})
 	dispatch(addAllOrderStatus(orderStatus))
 
 	if (isLoading) {
@@ -44,7 +46,7 @@ function Order() {
 							},
 							...filterOptions,
 						]}
-						defaultOption={-1}
+						defaultOption={defaultOption}
 						className=""
 						width="w-1/3"
 						onChangeHandler={handleSelectionChangeFilter}

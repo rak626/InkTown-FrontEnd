@@ -2,18 +2,16 @@ import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchOrderByOrderId, fetchOrderLogsByOrderId } from '../utils/apis'
-import Timeline from '../components/Timeline.jsx'
-import VerticalAltTimeline from '../components/VerticalAltTimeline'
-import VerticleTimeLine from '../components/VerticleTimeLine.jsx'
 import { useSelector } from 'react-redux'
 const OrderFlow = () => {
 	const { orderId } = useParams()
 	const [order, setOrder] = useState({})
 	const [orderLog, setOrderLog] = useState([])
 	const orderStatusList = useSelector((state) => state.orderStatus)
+	const token = useSelector(state => state.auth.token)
 	const FetchedOrder = useQuery({
 		queryKey: ['FindOrder', orderId],
-		queryFn: () => fetchOrderByOrderId(orderId),
+		queryFn: () => fetchOrderByOrderId(orderId, token),
 	})
 	useEffect(() => {
 		if (
@@ -26,7 +24,7 @@ const OrderFlow = () => {
 	}, [FetchedOrder.data, FetchedOrder.isLoading, FetchedOrder.isError])
 	const FetchedOrderLogs = useQuery({
 		queryKey: ['OrderLogs', orderId],
-		queryFn: () => fetchOrderLogsByOrderId(orderId),
+		queryFn: () => fetchOrderLogsByOrderId(orderId, token),
 	})
 	useEffect(() => {
 		if (

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
 	setAuthentication,
 	setCurrentUser,
@@ -51,7 +51,10 @@ const LoginForm = () => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit(onSubmit)} className='container mx-auto w-1/4 my-8'>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className="container mx-auto w-1/4 my-8"
+			>
 				<h1 className="text-2xl text-center font-bold mb-4">Login</h1>
 				<div className="flex flex-col space-y-4">
 					<div className="flex flex-col">
@@ -67,14 +70,14 @@ const LoginForm = () => {
 							name="phone"
 							{...register('phone', {
 								required: 'Phone No is required',
-								minLength: {
-									value: 10,
-									message: 'Phone No must be 10 characters',
-								},
-								maxLength: {
-									value: 10,
-									message: 'Phone No must be 10 characters',
-								},
+								// minLength: {
+								// 	value: 10,
+								// 	message: 'Phone No must be 10 characters',
+								// },
+								// maxLength: {
+								// 	value: 10,
+								// 	message: 'Phone No must be 10 characters',
+								// },
 							})}
 							className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
 						/>
@@ -97,11 +100,11 @@ const LoginForm = () => {
 							name="password"
 							{...register('password', {
 								required: 'Password is required',
-								minLength: {
-									value: 6,
-									message:
-										'Password must be at least 6 characters',
-								},
+								// minLength: {
+								// 	value: 6,
+								// 	message:
+								// 		'Password must be at least 6 characters',
+								// },
 							})}
 							className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
 						/>

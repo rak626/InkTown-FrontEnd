@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { updateOrderStatus } from '../utils/apis'
@@ -16,21 +16,22 @@ function TableRow({ orderData = {}, index = 0 }) {
 		orderId: orderData.orderId,
 		status: parseInt(selectedOption),
 	}
+	const token = useSelector((state) => state.auth.token)
 	const mutation = useMutation({
 		mutationKey: ['updateOrderStatus'],
-		mutationFn: (reqBody) => updateOrderStatus(reqBody),
+		mutationFn: (reqBody) => updateOrderStatus(reqBody, token),
 	})
-	function handleButtonClick(e) {
+	function handleButtonClick() {
 		mutation.mutate(reqBody)
 		setButtonDisabled(true)
 	}
 	const handleSelectChange = (e) => {
-        setSelectedOption(parseInt(e.target.value))
+		setSelectedOption(parseInt(e.target.value))
 		if (parseInt(e.target.value) !== orderData.orderStatus) {
 			setButtonDisabled(false)
 		} else {
-            setButtonDisabled(true)
-        }
+			setButtonDisabled(true)
+		}
 	}
 	return (
 		<>

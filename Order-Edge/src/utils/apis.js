@@ -1,85 +1,81 @@
 import axios from 'axios'
 
 const proxyUri = '/api'
-export const fetchAllOrders = async () => {
+const prepareHeaders = (token) => {
+	return token
+		? {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + token,
+		  }
+		: {
+				'Content-Type': 'application/json',
+		  }
+}
+
+export const fetchAllOrders = async (token) => {
 	const res = await axios.get(proxyUri + '/order/getAll', {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(token),
 	})
 	return res.data
 }
 
-export const fetchAllOrderStatus = async () => {
+export const fetchAllOrderStatus = async (token) => {
 	const res = await axios.get(proxyUri + '/order/getDisplayStatusList', {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(token),
 	})
 	return res.data
 }
 
-export const updateOrderStatus = async (data) => {
+export const updateOrderStatus = async (data, token) => {
 	const res = await axios.post(proxyUri + '/order/updateStatus', data, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(token),
 	})
 	return res.data
 }
 
-export const fetchAllOrdersBasedOnOrderStatus = async (orderStatus) => {
+export const fetchAllOrdersBasedOnOrderStatus = async (orderStatus, token) => {
 	if (parseInt(orderStatus) === -1) {
-		return fetchAllOrders()
+		return fetchAllOrders(token)
 	}
 	const res = await axios.get(proxyUri + '/order/getOrdersByStatus', {
 		params: {
 			orderStatus: parseInt(orderStatus),
 		},
+		headers: prepareHeaders(token),
 	})
 	return res.data
 }
 
-export const createOrderPostReq = async (data) => {
+export const createOrderPostReq = async (data, token) => {
 	const res = await axios.post(proxyUri + '/order/create', data, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(token),
 	})
 	return res.data
 }
 
-export const fetchOrderByOrderId = async (orderId) => {
+export const fetchOrderByOrderId = async (orderId, token) => {
 	const res = await axios.get(proxyUri + '/order/getById/' + orderId, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(token),
 	})
 	return res.data
 }
-export const fetchOrderLogsByOrderId = async (orderId) => {
+export const fetchOrderLogsByOrderId = async (orderId, token) => {
 	const res = await axios.get(proxyUri + '/order/getOrderLog/' + orderId, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(token),
 	})
 	return res.data
 }
 
 export const signUp = async (reqData) => {
 	const res = await axios.post(proxyUri + '/authentication/signUp', reqData, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(),
 	})
 	return res.data
 }
 
 export const signIn = async (reqData) => {
 	const res = await axios.post(proxyUri + '/authentication/signIn', reqData, {
-		headers: {
-			'Content-Type': 'application/json',
-		},
+		headers: prepareHeaders(),
 	})
 	return res.data
 }

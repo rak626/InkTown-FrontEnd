@@ -8,6 +8,7 @@ function Orderlist() {
 		(state) => state.order.currentFilterStatus
 	)
 	const [orderList, setOrderList] = useState([])
+	const token = useSelector(state => state.auth.token)
 	const {
 		data,
 		isError,
@@ -15,7 +16,7 @@ function Orderlist() {
 		loading: isLoading,
 	} = useQuery({
 		queryKey: ['Orders', currentFilterStatus],
-		queryFn: () => fetchAllOrdersBasedOnOrderStatus(currentFilterStatus),
+		queryFn: () => fetchAllOrdersBasedOnOrderStatus(currentFilterStatus, token),
 	})
 	useEffect(() => {
 		if (!isLoading && !isError && data) {

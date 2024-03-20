@@ -1,20 +1,19 @@
 import { nanoid } from '@reduxjs/toolkit'
 import { useMutation } from '@tanstack/react-query'
-import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router'
 import { createOrderPostReq } from '../utils/apis'
+import { useSelector } from 'react-redux'
 
 const CreateOrderPage = () => {
-	const navigate = useNavigate()
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm()
+	const token = useSelector((state) => state.auth.token)
 	const mutation = useMutation({
 		mutationKey: ['creating Order'],
-		mutationFn: (reqData) => createOrderPostReq(reqData),
+		mutationFn: (reqData) => createOrderPostReq(reqData, token),
 	})
 	const onSubmit = (data) => {
 		console.log('clicked ....')

@@ -99,7 +99,7 @@ function Navbar() {
 								className="text-gray-700 hover:bg-gray-300 px-2 py-1 rounded flex items-center focus:outline-none transition duration-300 ease-out hover:scale-110"
 							>
 								<span className="text-gray-700">
-									Rakesh Ghosh
+									{curUser.username}
 								</span>
 							</button>
 							{isOpen && (
