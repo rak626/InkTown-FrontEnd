@@ -1,33 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux'
-import DropDown from '../components/Dropdown'
-import Orderlist from '../components/Orderlist'
-import Tablelabel from '../components/Tablelabel'
-import { addAllOrderStatus, changeFilterStatus } from '../features/orderSlice'
-import { fetchAllOrderStatus } from '../utils/apis'
-import { useQuery } from '@tanstack/react-query'
+import DropDown from './Dropdown'
+import Orderlist from './Orderlist'
+import Tablelabel from './Tablelabel'
+import { changeFilterStatus } from '../features/orderSlice'
 
 function Order() {
-	const filterOptions = useSelector((state) => state.order.orderStatus)
-	const defaultOption = useSelector(state => state.order.currentFilterStatus)
 	const dispatch = useDispatch()
 	function handleSelectionChangeFilter(e) {
 		dispatch(changeFilterStatus(parseInt(e.target.value)))
 	}
-	const token = useSelector(state => state.auth.token)
-	const {
-		data: orderStatus,
-		isLoading,
-		isError,
-		error,
-	} = useQuery({ queryKey: ['allOrderStatus'], queryFn: () => fetchAllOrderStatus(token)})
-	dispatch(addAllOrderStatus(orderStatus))
-
-	if (isLoading) {
-		return <h1>loading....</h1>
-	}
-	if (isError) {
-		return <div>{error.message}</div>
-	}
+	
+	const filterOptions = useSelector((state) => state.order.orderStatus)
+	const defaultOption = useSelector(state => state.order.currentFilterStatus)
 	return (
 		<div className="container mx-auto pt-8 bg-slate-300">
 			<div className="flex pb-5">
