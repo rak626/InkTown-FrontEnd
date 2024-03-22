@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateOrderStatus } from '../utils/apis'
 import Dropdown from './Dropdown'
 import Button from './Button'
-import { updateOrderStatusInCurOrder } from '../features/orderSlice'
+import { addOrder, updateOrderStatusInCurOrder } from '../features/orderSlice'
 
 const Assign = () => {
 	const dispatch = useDispatch()
@@ -19,18 +19,13 @@ const Assign = () => {
 		status: parseInt(selectedOption),
 	}
 	const token = useSelector((state) => state.auth.token)
-	const mutation = useMutation({
+	const { mutate } = useMutation({
 		mutationKey: ['updateOrderStatus'],
 		mutationFn: (reqBody) => updateOrderStatus(reqBody, token),
+		onSuccess: (data) => dispatch(addOrder(data)),
 	})
 	function handleButtonClick() {
-		mutation.mutate(reqBody)
-		dispatch(
-			updateOrderStatusInCurOrder({
-				orderStatus: parseInt(selectedOption),
-				assignedTo: reqBody.userId,
-			})
-		)
+		mutate(reqBody)
 		setButtonDisabled(true)
 	}
 	const handleSelectChange = (e) => {
