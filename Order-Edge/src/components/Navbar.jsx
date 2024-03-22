@@ -48,6 +48,7 @@ function Navbar() {
 	const handleLogout = () => {
 		dispatch(setAuthentication(false))
 		dispatch(setCurrentUser({}))
+		setIsOpen(false)
 		navigate('/login')
 	}
 	return (
