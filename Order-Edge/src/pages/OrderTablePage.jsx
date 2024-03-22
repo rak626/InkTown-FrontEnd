@@ -7,7 +7,7 @@ import Loading from '../components/Loading'
 import Error from '../components/Error'
 import Container from '../components/Container'
 
-const OrderPage = () => {
+const OrderTablePage = () => {
 	const dispatch = useDispatch()
 	const token = useSelector((state) => state.auth.token)
 	const {
@@ -36,4 +36,4 @@ const OrderPage = () => {
 	)
 }
 
-export default OrderPage
+export default OrderTablePage

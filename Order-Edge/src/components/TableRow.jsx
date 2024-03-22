@@ -5,31 +5,8 @@ import { Link } from 'react-router-dom'
 import { updateOrderStatus } from '../utils/apis'
 
 function TableRow({ orderData = {}, index = 0 }) {
-	// const [selectedOption, setSelectedOption] = useState(orderData.orderStatus)
-	// const [buttonDisable, setButtonDisabled] = useState(true)
 	const selectedOption = useSelector((state) => state.order.orderStatus[orderData?.orderStatus])
-	// const reqBody = {
-	// 	userId: '7d7603e1-0fa6-457f-8721-0a7fadc1b5ff',
-	// 	orderId: orderData.orderId,
-	// 	status: parseInt(selectedOption),
-	// }
-	// const token = useSelector((state) => state.auth.token)
-	// const mutation = useMutation({
-	// 	mutationKey: ['updateOrderStatus'],
-	// 	mutationFn: (reqBody) => updateOrderStatus(reqBody, token),
-	// })
-	// function handleButtonClick() {
-	// 	mutation.mutate(reqBody)
-	// 	setButtonDisabled(true)
-	// }
-	// const handleSelectChange = (e) => {
-	// 	setSelectedOption(parseInt(e.target.value))
-	// 	if (parseInt(e.target.value) !== orderData.orderStatus) {
-	// 		setButtonDisabled(false)
-	// 	} else {
-	// 		setButtonDisabled(true)
-	// 	}
-	// }
+
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap">{index}</td>
@@ -49,21 +26,10 @@ function TableRow({ orderData = {}, index = 0 }) {
 				{orderData?.isUrgent ? 'Yes' : 'No'}
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap">
-				{/* <Dropdown
-					defaultOption={selectedOption}
-					options={selections?.length > 0 ? selections : options}
-					onChangeHandler={handleSelectChange}
-				/> */}
 				<p>{selectedOption.displayValue}</p>
 			</td>
 			{/* <td className="px-6 py-4 whitespace-nowrap">
-				<Button
-					onClick={handleButtonClick}
-					isDisabled={buttonDisable}
-					className={buttonDisable ? 'bg-gray-500' : 'bg-green-500'}
-				>
-					Save
-				</Button>
+				
 			</td> */}
 		</>
 	)

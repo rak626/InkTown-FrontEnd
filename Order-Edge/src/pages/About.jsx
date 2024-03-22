@@ -1,4 +1,4 @@
-import Logo from '../../public/InkTownLogo.svg'
+import Logo from '/InkTownLogo.svg'
 function About() {
 	return (
 		<section className="about-us container mx-auto py-16">

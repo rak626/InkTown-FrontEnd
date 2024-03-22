@@ -6,21 +6,21 @@ import {
 
 import About from './pages/About'
 import Contact from './pages/Contact'
-import CreateOrderPage from './pages/CreateOrderPage'
 import LoginPage from './pages/LoginPage'
-import OrderFlow from './pages/OrderFlow'
-import OrderPage from './pages/OrderPage'
+import OrderTablePage from './pages/OrderTablePage'
 import SignupPage from './pages/SignupPage'
 import Layout from './pages/Layout'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
+import CreateOrderPage from './pages/CreateOrderPage'
+import OrderIdPage from './pages/OrderIdPage'
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Layout />}>
 			<Route path="home" element={<Home />} />
-			<Route path="orders" element={<OrderPage />} />
-			<Route path="orders/:orderId" element={<OrderFlow />} />
+			<Route path="orders" element={<OrderTablePage />} />
+			<Route path="orders/:orderId" element={<OrderIdPage />} />
 			<Route path="orders/createOrder" element={<CreateOrderPage />} />
 			{/* <Route path='customers' element={<Customer />} />
             <Route path='products' element={<Product />} />
