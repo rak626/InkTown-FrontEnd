@@ -1,38 +1,37 @@
 import {
-    Route,
-    createBrowserRouter,
-    createRoutesFromElements,
+	Route,
+	createBrowserRouter,
+	createRoutesFromElements,
 } from 'react-router-dom'
-import {
-    Home,
-    Layout,
-    Order,
-    Profile
-} from './pages'
+
 import About from './pages/About'
 import Contact from './pages/Contact'
-import CreateOrderPage from './pages/CreateOrderPage'
-import OrderFlow from './pages/OrderFlow'
-import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
+import OrderTablePage from './pages/OrderTablePage'
+import SignupPage from './pages/SignupPage'
+import Layout from './pages/Layout'
+import Home from './pages/Home'
+import Profile from './pages/Profile'
+import CreateOrderPage from './pages/CreateOrderPage'
+import OrderIdPage from './pages/OrderIdPage'
 
 const router = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path='/' element={<Layout />}>
-            <Route path='home' element={<Home />} />
-            <Route path='orders' element={<Order />} />
-            <Route path='orders/:orderId' element={<OrderFlow />} />
-            <Route path='orders/createOrder' element={<CreateOrderPage />} />
-            {/* <Route path='customers' element={<Customer />} />
+	createRoutesFromElements(
+		<Route path="/" element={<Layout />}>
+			<Route path="home" element={<Home />} />
+			<Route path="orders" element={<OrderTablePage />} />
+			<Route path="orders/:orderId" element={<OrderIdPage />} />
+			<Route path="orders/createOrder" element={<CreateOrderPage />} />
+			{/* <Route path='customers' element={<Customer />} />
             <Route path='products' element={<Product />} />
             <Route path='reports' element={<Report />} /> */}
-            <Route path='about' element={<About />} />
-            <Route path='contact' element={<Contact />} />
-            <Route path='profile' element={<Profile />} />
-            <Route path='login' element={<LoginPage />} />
-            <Route path='logout' element />
-            <Route path='signup' element={<SignupPage />} />
-        </Route>
-    )
+			<Route path="about" element={<About />} />
+			<Route path="contact" element={<Contact />} />
+			<Route path="profile" element={<Profile />} />
+			<Route path="login" element={<LoginPage />} />
+			<Route path="logout" element />
+			<Route path="signup" element={<SignupPage />} />
+		</Route>
+	)
 )
 export default router

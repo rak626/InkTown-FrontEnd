@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Tablelabel({ label, labelFor, className = '', ...rest }) {
     return (
         <div className='ml-20'>
