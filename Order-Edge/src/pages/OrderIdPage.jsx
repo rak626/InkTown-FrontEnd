@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom'
 import Container from '../components/Container'
-import OrderFlow from '../components/OrderFlow'
 import { fetchOrderByOrderId } from '../utils/apis'
 import { useQuery } from '@tanstack/react-query'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,7 +27,6 @@ const OrderIdPage = () => {
 	}
 	return (
 		<Container>
-			{/* <OrderFlow order={data} /> */}
 			<OrderTabs/>
 		</Container>
 	)

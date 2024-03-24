@@ -1,8 +1,12 @@
-import React from 'react'
 import SignUpForm from '../components/SignupForm'
+import Container from '../components/Container'
 
 const SignupPage = () => {
-	return <SignUpForm />
+	return (
+		<Container className= "w-2/6">
+			<SignUpForm />
+		</Container>
+	)
 }
 
 export default SignupPage

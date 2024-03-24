@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateOrderStatus } from '../utils/apis'
 import Dropdown from './Dropdown'
 import Button from './Button'
-import { addOrder, updateOrderStatusInCurOrder } from '../features/orderSlice'
+import { addOrder } from '../features/orderSlice'
 
 const Assign = () => {
 	const dispatch = useDispatch()

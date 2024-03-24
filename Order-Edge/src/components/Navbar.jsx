@@ -1,12 +1,12 @@
-import React from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import Logo from '/InkTownLogo.svg'
-import Button from './Button'
 import { setAuthentication, setCurrentUser } from '../features/authSlice'
+import Button from './Button'
+import Logo from '/InkTownLogo.svg'
 
 function Navbar() {
-	const [isOpen, setIsOpen] = React.useState(false)
+	const [isOpen, setIsOpen] = useState(false)
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
 	const curUser = useSelector((state) => state.auth.curUser)
 	const navLinks = [
