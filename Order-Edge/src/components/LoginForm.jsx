@@ -8,7 +8,7 @@ import {
 	setCurrentUser,
 	setToken,
 } from '../features/authSlice'
-import Button from './Button'
+import Error from './Error'
 import { signIn } from '../utils/apis'
 
 const LoginForm = () => {
@@ -32,7 +32,7 @@ const LoginForm = () => {
 			dispatch(setCurrentUser(data.user))
 			navigate('/home')
 		},
-		onError: (error) => setShowLoginError(true),
+		onError: () => setShowLoginError(true),
 	})
 
 	const onSubmit = async (data) => {
@@ -49,18 +49,19 @@ const LoginForm = () => {
 		setValue('password', '')
 	}
 
+	if (mutation.isError) {
+		return <Error errorMsg={mutation.error}/>
+	}
+
 	return (
-		<>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className="container mx-auto w-1/4 my-8"
-			>
-				<h1 className="text-2xl text-center font-bold mb-4">Login</h1>
+		<div className="flex flex-col space-y-4 justify-center items-center w-full bg-gray-100 rounded-sm p-8">
+			<form onSubmit={handleSubmit(onSubmit)} className="">
+				<h1 className="text-3xl text-center font-medium mb-4">Login</h1>
 				<div className="flex flex-col space-y-4">
 					<div className="flex flex-col">
 						<label
-							htmlFor="Phone No"
-							className="text-sm font-medium text-gray-700"
+							htmlFor="phone"
+							className="text-sm font-medium text-gray-700 py-2"
 						>
 							Phone No
 						</label>
@@ -70,19 +71,15 @@ const LoginForm = () => {
 							name="phone"
 							{...register('phone', {
 								required: 'Phone No is required',
-								// minLength: {
-								// 	value: 10,
-								// 	message: 'Phone No must be 10 characters',
-								// },
-								// maxLength: {
-								// 	value: 10,
-								// 	message: 'Phone No must be 10 characters',
-								// },
+								pattern: {
+									value: /^\d{10}$/,
+									message: 'Phone No Should be 10 digit',
+								},
 							})}
 							className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
 						/>
 						{errors.phone && (
-							<span className="text-red-500 text-sm">
+							<span className="text-red-500 text-sm py-1">
 								{errors.phone.message}
 							</span>
 						)}
@@ -90,7 +87,7 @@ const LoginForm = () => {
 					<div className="flex flex-col">
 						<label
 							htmlFor="password"
-							className="text-sm font-medium text-gray-700"
+							className="text-sm font-medium text-gray-700 py-2"
 						>
 							Password
 						</label>
@@ -114,34 +111,31 @@ const LoginForm = () => {
 							</span>
 						)}
 					</div>
-					<button
-						type="submit"
-						className="bg-sky-500 text-white rounded-md py-2 px-4 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-						disabled={submitting}
-					>
-						{submitting ? 'Submitting...' : 'Login'}
-					</button>
+					<div className="flex flex-col py-8">
+						<button
+							type="submit"
+							className="bg-sky-500 text-white rounded-md py-2 px-4 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+							disabled={submitting}
+						>
+							{submitting ? 'Submitting...' : 'Login'}
+						</button>
+					</div>
 				</div>
 			</form>
 			{showLoginError && (
-				<div className="">
-					<div className="flex flex-col justify-between items-center mb-3">
-						<h5 className="text-lg font-medium text-red-500">
-							Login Error
-						</h5>
-						<p className="text-sm text-gray-700">
-							Incorrect username or password. Please try again.
-						</p>
-						<Button
-							className="bg-red-400"
-							onClickHandler={handleCloseDialog}
-						>
-							Close
-						</Button>
-					</div>
+				<div className="flex justify-between items-center m-4">
+					<p className="text-lg text-gray-700 truncate">
+						Incorrect username or password. Please try again.
+					</p>
+					<span
+						className="material-symbols-outlined text-red-500 hover:cursor-pointer m-4"
+						onClick={handleCloseDialog}
+					>
+						cancel
+					</span>
 				</div>
 			)}
-		</>
+		</div>
 	)
 }
 

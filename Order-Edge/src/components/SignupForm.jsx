@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { motion } from 'framer-motion' // Optional for animations
 import { useMutation } from '@tanstack/react-query'
 import { signUp } from '../utils/apis'
 import { useDispatch } from 'react-redux'
@@ -12,7 +11,7 @@ import {
 } from '../features/authSlice'
 
 const formContainer =
-	'flex flex-col space-y-4 justify-center items-center w-full h-screen bg-gray-100'
+	'flex flex-col space-y-4 justify-center items-center w-full bg-gray-100 p-8'
 const inputField =
 	'px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:ring-1'
 const button =
@@ -60,120 +59,110 @@ const SignUpForm = () => {
 	}
 
 	return (
-		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
-		>
-			<form className={formContainer} onSubmit={handleSubmit(onSubmit)}>
-				<h1 className="text-3xl font-bold mb-4">Sign Up</h1>
+		<form className={formContainer} onSubmit={handleSubmit(onSubmit)}>
+			<h1 className="text-3xl tracking-wide font-medium m-4">Sign Up</h1>
 
-				<div className="flex flex-col">
-					<label htmlFor="name" className="mb-2 text-sm">
-						Name
-					</label>
-					<input
-						type="text"
-						id="name"
-						name="name"
-						className={inputField}
-						{...register('name', { required: 'Name is required' })}
-					/>
-					{errors.name && (
-						<span className={errorMessage}>
-							{errors.name.message}
-						</span>
-					)}
-				</div>
+			<div className="flex flex-col">
+				<label htmlFor="name" className="mb-2 text-sm">
+					Name
+				</label>
+				<input
+					type="text"
+					id="name"
+					name="name"
+					className={inputField}
+					{...register('name', { required: 'Name is required' })}
+				/>
+				{errors.name && (
+					<span className={errorMessage}>{errors.name.message}</span>
+				)}
+			</div>
 
-				<div className="flex flex-col">
-					<label htmlFor="phone" className="mb-2 text-sm">
-						Phone Number
-					</label>
+			<div className="flex flex-col">
+				<label htmlFor="phone" className="mb-2 text-sm">
+					Phone Number
+				</label>
+				<input
+					type="tel" // Use "tel" input type for phone numbers
+					id="phone"
+					name="phone"
+					className={inputField}
+					{...register('phone', {
+						required: 'Phone number is required',
+						pattern: {
+							value: /^\d{10}$/,
+							message: 'Invalid phone number format',
+						},
+					})}
+				/>
+				{errors.phone && (
+					<span className={errorMessage}>{errors.phone.message}</span>
+				)}
+			</div>
+
+			<div className="flex flex-col">
+				<label htmlFor="password" className="mb-2 text-sm">
+					Password
+				</label>
+				<input
+					type="password"
+					id="password"
+					name="password"
+					className={inputField}
+					{...register('password', {
+						required: 'Password is required',
+						minLength: {
+							value: 3,
+							message:
+								'Password must be at least 3 characters long',
+						},
+					})}
+				/>
+				{errors.password && (
+					<span className={errorMessage}>
+						{errors.password.message}
+					</span>
+				)}
+			</div>
+			<div className={radioContainer}>
+				<div>
 					<input
-						type="tel" // Use "tel" input type for phone numbers
-						id="phone"
-						name="phone"
-						className={inputField}
-						{...register('phone', {
-							required: 'Phone number is required',
-							pattern: {
-								value: /^[0-9\s\-+\.]+$/i, // Allow phone number formats with spaces, hyphens, dots, and plus signs
-								message: 'Invalid phone number format',
-							},
+						type="radio"
+						id="customer"
+						name="role" // Same name for all radio buttons
+						value="customer"
+						className={radioInput}
+						// Register the radio button using react-hook-form
+						{...register('role', {
+							required: 'Please select a role',
 						})}
 					/>
-					{errors.phone && (
-						<span className={errorMessage}>
-							{errors.phone.message}
-						</span>
-					)}
-				</div>
-
-				<div className="flex flex-col">
-					<label htmlFor="password" className="mb-2 text-sm">
-						Password
+					<label className={radioLabel} htmlFor="customer">
+						Customer
 					</label>
+				</div>
+				<div>
 					<input
-						type="password"
-						id="password"
-						name="password"
-						className={inputField}
-						{...register('password', {
-							required: 'Password is required',
-							minLength: {
-								value: 3,
-								message:
-									'Password must be at least 3 characters long',
-							},
+						type="radio"
+						id="user"
+						name="role" // Same name for all radio buttons
+						value="user"
+						className={radioInput}
+						// Register the radio button using react-hook-form
+						{...register('role', {
+							required: 'Please select a role',
 						})}
 					/>
-					{errors.password && (
-						<span className={errorMessage}>
-							{errors.password.message}
-						</span>
-					)}
+					<label className={radioLabel} htmlFor="user">
+						User
+					</label>
 				</div>
-				<div className={radioContainer}>
-					<div>
-						<input
-							type="radio"
-							id="customer"
-							name="role" // Same name for all radio buttons
-							value="customer"
-							className={radioInput}
-							// Register the radio button using react-hook-form
-							{...register('role', {
-								required: 'Please select a role',
-							})}
-						/>
-						<label className={radioLabel} htmlFor="customer">
-							Customer
-						</label>
-					</div>
-					<div>
-						<input
-							type="radio"
-							id="user"
-							name="role" // Same name for all radio buttons
-							value="user"
-							className={radioInput}
-							// Register the radio button using react-hook-form
-							{...register('role', {
-								required: 'Please select a role',
-							})}
-						/>
-						<label className={radioLabel} htmlFor="user">
-							User
-						</label>
-					</div>
-				</div>
+			</div>
 
-				<button type="submit" className={button} disabled={submitting}>
-					{submitting ? 'Submitting...' : 'Sign Up'}
-				</button>
-			</form>
-		</motion.div>
+			<button type="submit" className={button} disabled={submitting}>
+				{submitting ? 'Submitting...' : 'Sign Up'}
+			</button>
+		</form>
 	)
 }
 

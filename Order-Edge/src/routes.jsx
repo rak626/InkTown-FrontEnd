@@ -1,4 +1,5 @@
 import {
+	Navigate,
 	Route,
 	createBrowserRouter,
 	createRoutesFromElements,
@@ -18,6 +19,7 @@ import OrderIdPage from './pages/OrderIdPage'
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Layout />}>
+			<Route index element={<Navigate to="/home" replace />} />
 			<Route path="home" element={<Home />} />
 			<Route path="orders" element={<OrderTablePage />} />
 			<Route path="orders/:orderId" element={<OrderIdPage />} />

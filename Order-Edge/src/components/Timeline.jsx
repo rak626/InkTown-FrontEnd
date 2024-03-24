@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const TimelineItem = ({ step, content, active }) => {
   return (
