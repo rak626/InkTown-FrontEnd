@@ -5,6 +5,7 @@ import { updateOrderStatus } from '../utils/apis'
 import Dropdown from './Dropdown'
 import Button from './Button'
 import { addOrder } from '../features/orderSlice'
+import Error from './Error'
 
 const Assign = () => {
 	const dispatch = useDispatch()
@@ -19,7 +20,7 @@ const Assign = () => {
 		status: parseInt(selectedOption),
 	}
 	const token = useSelector((state) => state.auth.token)
-	const { mutate } = useMutation({
+	const { mutate, isError, error } = useMutation({
 		mutationKey: ['updateOrderStatus'],
 		mutationFn: (reqBody) => updateOrderStatus(reqBody, token),
 		onSuccess: (data) => dispatch(addOrder(data)),
@@ -35,6 +36,9 @@ const Assign = () => {
 		} else {
 			setButtonDisabled(true)
 		}
+	}
+	if (isError) {
+		return <Error errorMsg={error} />
 	}
 	return (
 		<div className="w-2/6 flex gap-5 p-4 rounded border border-spacing-4 border-red-300">

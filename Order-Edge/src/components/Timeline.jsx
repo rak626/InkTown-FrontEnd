@@ -1,5 +1,3 @@
-
-
 const TimelineItem = ({ step, content, active }) => {
   return (
     <div

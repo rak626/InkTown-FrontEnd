@@ -12,6 +12,7 @@ function Orderlist() {
 		'AssignTo',
 		'Urgent',
 		'OrderStatus',
+		'CreatedAt',
 		// 'Action',
 	]
 	const currentFilterStatus = useSelector(
@@ -40,7 +41,7 @@ function Orderlist() {
 	}
 	return (
 		<div className="overflow-x-auto">
-			<table className="min-w-full divide-y divide-gray-200 border border-slate-700">
+			<table className="min-w-full divide-y divide-gray-200 border border-slate-200">
 				<thead className="bg-gray-50">
 					<TableHeaderRow colList={colList} />
 				</thead>
