@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 function Tablelabel({ label, labelFor, className = '', ...rest }) {
     return (
         <div className='ml-20'>
@@ -11,4 +12,9 @@ function Tablelabel({ label, labelFor, className = '', ...rest }) {
     )
 }
 
+Tablelabel.propTypes = {
+    label: PropTypes.string.isRequired,
+    labelFor: PropTypes.string,
+    className: PropTypes.string,
+};
 export default Tablelabel

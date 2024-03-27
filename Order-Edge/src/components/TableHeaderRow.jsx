@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const TableHeaderRow = ({thClassName = '', colList = []}) => {
 	return (
 		<tr>
@@ -14,4 +15,8 @@ const TableHeaderRow = ({thClassName = '', colList = []}) => {
 	)
 }
 
+TableHeaderRow.propTypes = {
+	thClassName: PropTypes.string,
+	colList: PropTypes.array
+};
 export default TableHeaderRow

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 export default function Error({ errorMsg = '' }) {
 	return (
 		<div className="bg-red-100 border border-red-400 rounded-md p-4">
@@ -6,3 +7,9 @@ export default function Error({ errorMsg = '' }) {
 		</div>
 	)
 }
+
+Error.propTypes = {
+	errorMsg: PropTypes.shape({
+		message: PropTypes.string,
+	}),
+};

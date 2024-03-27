@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 function Contact() {
 	return (
 		<section className="container mx-auto px-10 contact-info bg-gray-100 p-8 rounded-lg">
