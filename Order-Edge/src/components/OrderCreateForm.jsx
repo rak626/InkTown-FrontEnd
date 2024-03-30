@@ -3,8 +3,10 @@ import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { createOrderPostReq } from '../utils/apis'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const OrderCreateForm = () => {
+	const navigate = useNavigate()
 	const curUser = useSelector((state) => state.auth.curUser)
 	const isCustomer = curUser.role === 'ROLE_CUST'
 	const {
@@ -16,9 +18,11 @@ const OrderCreateForm = () => {
 	const mutation = useMutation({
 		mutationKey: ['creating Order'],
 		mutationFn: (reqData) => createOrderPostReq(reqData, token),
+		onSuccess: (data) => {
+			navigate(`/orders/${data?.orderId}`)
+		},
 	})
 	const onSubmit = (data) => {
-		console.log('clicked ....')
 		const newData = {
 			...data,
 			isUrgent: data.isUrgent === 'true',
@@ -34,7 +38,7 @@ const OrderCreateForm = () => {
 		}
 		mutation.mutate(newData)
 	}
-	
+
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
