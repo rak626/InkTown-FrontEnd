@@ -1,12 +1,12 @@
 {
 	"rewrites": [
 		{
-			"source": "/(.*)",
-			"destination": "/index.html"
+			"source": "/api/:path*",
+			"destination": "http://3.114.169.2:8080/inktown/:path*"
 		},
 		{
-			"source": "/api/:path*",
-			"destination": "http://localhost:9090/:path*"
+			"source": "/(.*)",
+			"destination": "/index.html"
 		}
 	]
 }

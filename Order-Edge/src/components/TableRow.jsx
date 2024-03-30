@@ -1,20 +1,19 @@
-import { useMutation } from '@tanstack/react-query'
-import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { updateOrderStatus } from '../utils/apis'
+import PropTypes from 'prop-types'
+import moment from 'moment'
 
 function TableRow({ orderData = {}, index = 0 }) {
-	const selectedOption = useSelector((state) => state.order.orderStatus[orderData?.orderStatus])
-
+	const selectedOption = useSelector(
+		(state) => state.order.orderStatus[orderData?.orderStatus]
+	)
+	console.log(orderData)
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap">{index}</td>
 			<td className="px-6 py-4 whitespace-nowrap">
 				<Link to={`/orders/${orderData?.orderId}`}>
-					<h4 className="underline underline-offset-4 text-blue-700">
-						{orderData?.orderName}
-					</h4>
+					<h4 className=" text-blue-700">{orderData?.orderName}</h4>
 				</Link>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap">
@@ -28,10 +27,14 @@ function TableRow({ orderData = {}, index = 0 }) {
 			<td className="px-6 py-4 whitespace-nowrap">
 				<p>{selectedOption.displayValue}</p>
 			</td>
-			{/* <td className="px-6 py-4 whitespace-nowrap">
-				
-			</td> */}
+			<td className="px-6 py-4 whitespace-nowrap">
+				<p>{moment(orderData?.createdAt).calendar()}</p>
+			</td>
 		</>
 	)
 }
 export default TableRow
+TableRow.propTypes = {
+	orderData: PropTypes.object,
+	index: PropTypes.number,
+}

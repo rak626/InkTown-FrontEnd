@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const Dropdown = ({
     options = [],
@@ -21,4 +21,11 @@ const Dropdown = ({
     )
 }
 
+Dropdown.propTypes = {
+    defaultOption: PropTypes.number,
+    options: PropTypes.array,
+    onChangeHandler: PropTypes.func,
+    className: PropTypes.string,
+    width: PropTypes.string,
+}
 export default Dropdown

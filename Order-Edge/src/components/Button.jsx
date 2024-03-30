@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 const Button = ({
     children,
     onClickHandler,
@@ -16,4 +17,10 @@ const Button = ({
     )
 }
 
+Button.propTypes = {
+    children: PropTypes.node,
+    onClickHandler: PropTypes.func,
+    className: PropTypes.string,
+    isDisabled: PropTypes.bool,
+};
 export default Button;
