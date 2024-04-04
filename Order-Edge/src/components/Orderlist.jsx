@@ -1,44 +1,59 @@
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { fetchAllOrdersBasedOnOrderStatus } from '../utils/apis'
-import TableRow from './TableRow'
+import {
+	fetchAllOrdersBasedOnOrderStatus,
+	fetchAllOrdersBasedOnOrderStatusAndUserId,
+} from '../utils/apis'
+import Error from './Error'
+import Loading from './Loading'
 import TableHeaderRow from './TableHeaderRow'
+import TableRow from './TableRow'
 
+const colList = [
+	'OrderId',
+	'OrderName',
+	'AssignTo',
+	'Urgent',
+	'OrderStatus',
+	'CreatedAt',
+]
 function Orderlist() {
-	const colList = [
-		'OrderId',
-		'OrderName',
-		'AssignTo',
-		'Urgent',
-		'OrderStatus',
-		'CreatedAt',
-		// 'Action',
-	]
 	const currentFilterStatus = useSelector(
 		(state) => state.order.currentFilterStatus
 	)
-	const [orderList, setOrderList] = useState([])
 	const token = useSelector((state) => state.auth.token)
-	const {
-		data,
-		isError,
-		error,
-		loading: isLoading,
-	} = useQuery({
-		queryKey: ['Orders', currentFilterStatus],
-		queryFn: () =>
-			fetchAllOrdersBasedOnOrderStatus(currentFilterStatus, token),
+	const curUser = useSelector((state) => state.auth.curUser)
+	const toggle = useSelector((state) => state.order.toggle)
+	const [orderList, setOrderList] = useState([])
+
+	const { data, isError, error, isLoading } = useQuery({
+		queryKey: ['Orders', currentFilterStatus, toggle],
+		queryFn: () => {
+			if (!toggle) {
+				return fetchAllOrdersBasedOnOrderStatusAndUserId(
+					currentFilterStatus,
+					curUser?.userId,
+					token
+				)
+			} else {
+				return fetchAllOrdersBasedOnOrderStatus(
+					currentFilterStatus,
+					token
+				)
+			}
+		},
 	})
+
 	useEffect(() => {
 		if (!isLoading && !isError && data) {
 			setOrderList(data)
 		}
-	}, [data, isLoading, isError])
+	}, [isLoading, isError, data, toggle])
 
-	if (isError) {
-		return <div>{error.message}</div>
-	}
+	if (isLoading) return <Loading />
+	if (isError) return <Error errorMsg={error} />
+
 	return (
 		<div className="overflow-x-auto">
 			<table className="min-w-full divide-y divide-gray-200 border border-slate-200">

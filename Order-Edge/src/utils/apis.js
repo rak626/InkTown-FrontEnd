@@ -4,12 +4,12 @@ const proxyUri = '/api'
 const prepareHeaders = (token) => {
 	return token
 		? {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + token,
-		  }
+			'Content-Type': 'application/json',
+			Authorization: 'Bearer ' + token,
+		}
 		: {
-				'Content-Type': 'application/json',
-		  }
+			'Content-Type': 'application/json',
+		}
 }
 
 export const fetchAllOrders = async (token) => {
@@ -40,6 +40,17 @@ export const fetchAllOrdersBasedOnOrderStatus = async (orderStatus, token) => {
 	const res = await axios.get(proxyUri + '/order/getOrdersByStatus', {
 		params: {
 			orderStatus: parseInt(orderStatus),
+		},
+		headers: prepareHeaders(token),
+	})
+	return res.data
+}
+
+export const fetchAllOrdersBasedOnOrderStatusAndUserId = async ( orderStatus, userId, token) => {
+	const res = await axios.get(proxyUri + '/order/getOrdersByStatusAndUserId', {
+		params: {
+			orderStatus: parseInt(orderStatus),
+            userId: userId
 		},
 		headers: prepareHeaders(token),
 	})

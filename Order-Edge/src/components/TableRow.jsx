@@ -7,7 +7,6 @@ function TableRow({ orderData = {}, index = 0 }) {
 	const selectedOption = useSelector(
 		(state) => state.order.orderStatus[orderData?.orderStatus]
 	)
-	console.log(orderData)
 	return (
 		<>
 			<td className="px-6 py-4 whitespace-nowrap">{index}</td>
