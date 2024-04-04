@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useMutation } from '@tanstack/react-query'
 import { signUp } from '../utils/apis'
@@ -30,6 +30,8 @@ const SignUpForm = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [submitting, setSubmitting] = useState(false)
+	const [isUserClicked, setIsUserClicked] = useState(false)
+
 	const mutation = useMutation({
 		mutationKey: ['SignUp'],
 		mutationFn: (reqData) => signUp(reqData),
@@ -41,7 +43,7 @@ const SignUpForm = () => {
 		},
 	})
 
-	const onSubmit = async (data) => {
+	const onSubmitForm = async (data) => {
 		setSubmitting(true)
 		mutation.mutate({
 			userName: data.name,
@@ -53,12 +55,13 @@ const SignUpForm = () => {
 					: data.role === 'user'
 					? 'ROLE_EMP'
 					: '',
+			secretPassword: data.role === 'user' ? data.secretPassword : null,
 		})
 		setSubmitting(false)
 	}
 
 	return (
-		<form className={formContainer} onSubmit={handleSubmit(onSubmit)}>
+		<form className={formContainer} onSubmit={handleSubmit(onSubmitForm)}>
 			<h1 className="text-3xl tracking-wide font-medium m-4">Sign Up</h1>
 
 			<div className="flex flex-col">
@@ -123,14 +126,42 @@ const SignUpForm = () => {
 					</span>
 				)}
 			</div>
+			{isUserClicked && (
+				<div className="flex flex-col">
+					<label htmlFor="password" className="mb-2 text-sm">
+						Secret Password
+					</label>
+					<input
+						type="password"
+						id="secretPassword"
+						name="secretPassword"
+						className={inputField}
+						{...register('secretPassword', {
+							required: 'secretPassword is required',
+							minLength: {
+								value: 3,
+								message:
+									'Password must be at least 3 characters long',
+							},
+						})}
+					/>
+					{errors.password && (
+						<span className={errorMessage}>
+							{errors.password.message}
+						</span>
+					)}
+				</div>
+			)}
 			<div className={radioContainer}>
 				<div>
 					<input
 						type="radio"
+						onClick={() => setIsUserClicked(false)}
 						id="customer"
 						name="role" // Same name for all radio buttons
 						value="customer"
 						className={radioInput}
+						defaultChecked
 						// Register the radio button using react-hook-form
 						{...register('role', {
 							required: 'Please select a role',
@@ -143,6 +174,7 @@ const SignUpForm = () => {
 				<div>
 					<input
 						type="radio"
+						onClick={() => setIsUserClicked((prev) => !prev)}
 						id="user"
 						name="role" // Same name for all radio buttons
 						value="user"
