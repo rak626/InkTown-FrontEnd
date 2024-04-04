@@ -21,7 +21,7 @@ function Home() {
 					<Link
 						to={authentication ? '/orders/createOrder' : '/login'}
 					>
-						<Button className="bg-red-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-red-800 transition duration-300">
+						<Button className="bg-[#f22756] text-white py-3 px-6 rounded-lg font-bold hover:bg-red-800 transition duration-300">
 							Start Creating
 						</Button>
 					</Link>

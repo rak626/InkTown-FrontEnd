@@ -11,12 +11,13 @@ import TableHeaderRow from './TableHeaderRow'
 import TableRow from './TableRow'
 
 const colList = [
-	'OrderId',
-	'OrderName',
-	'AssignTo',
+	'Order Id',
+	'Order Name',
+	'Assign To',
 	'Urgent',
-	'OrderStatus',
-	'CreatedAt',
+	'Order Status',
+	'Created At',
+	'Updated At',
 ]
 function Orderlist() {
 	const currentFilterStatus = useSelector(

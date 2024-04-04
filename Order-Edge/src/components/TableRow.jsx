@@ -29,6 +29,9 @@ function TableRow({ orderData = {}, index = 0 }) {
 			<td className="px-6 py-4 whitespace-nowrap">
 				<p>{moment(orderData?.createdAt).calendar()}</p>
 			</td>
+			<td className="px-6 py-4 whitespace-nowrap">
+				<p>{moment(orderData?.updatedAt).calendar()}</p>
+			</td>
 		</>
 	)
 }
