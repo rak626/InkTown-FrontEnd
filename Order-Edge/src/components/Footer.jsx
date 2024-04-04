@@ -75,7 +75,7 @@ function Footer() {
                     <span className='text-sm text-gray-500 sm:text-center'>
                         © 2024 &nbsp;
                         <a
-                            href='https://hiteshchoudhary.com/'
+                            href='#'
                             className='hover:underline'>
                             RakeshGhosh
                         </a>

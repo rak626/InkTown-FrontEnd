@@ -4,6 +4,7 @@ const initialState = {
 	orderStatus: [],
 	currentFilterStatus: -1,
 	curOrder: null,
+	toggle: false,
 }
 
 export const orderSlice = createSlice({
@@ -22,6 +23,9 @@ export const orderSlice = createSlice({
 		updateOrderStatusInCurOrder: (state, action) => {
 			state.curOrder = { ...state.curOrder, ...action.payload }
 		},
+		updateToggle: (state, action) => {
+			state.toggle = action.payload
+		},
 	},
 })
 
@@ -30,6 +34,7 @@ export const {
 	changeFilterStatus,
 	addOrder,
 	updateOrderStatusInCurOrder,
+	updateToggle,
 } = orderSlice.actions
 
 export default orderSlice.reducer

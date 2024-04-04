@@ -7,7 +7,6 @@ import Loading from './Loading'
 
 const OrderFlow = () => {
 	const order = useSelector((state) => state.order.curOrder)
-	console.log(order)
 	const orderId = order?.orderId
 	const [orderLog, setOrderLog] = useState([])
 	const orderStatusList = useSelector((state) => state.order.orderStatus)

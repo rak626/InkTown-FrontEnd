@@ -7,6 +7,7 @@ export default defineConfig({
 		proxy: {
 			"/api": {
 				target: "http://localhost:9090",
+				// target: "http://3.114.169.2:8080/inktown",
 				changeOrigin: true,
 				rewrite: (path) => path.replace(/^\/api/, ""),
 			},

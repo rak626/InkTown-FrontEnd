@@ -34,7 +34,6 @@ const SignUpForm = () => {
 		mutationKey: ['SignUp'],
 		mutationFn: (reqData) => signUp(reqData),
 		onSuccess: (data) => {
-			console.log(data)
 			dispatch(setAuthentication(true))
 			dispatch(setCurrentUser(data.user))
 			dispatch(setToken(data.token))

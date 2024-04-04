@@ -4,7 +4,7 @@ function Tablelabel({ label, labelFor, className = '', ...rest }) {
         <div className='ml-20'>
             <label
                 htmlFor={labelFor}
-                className={`text-2xl font-bold shadow-md underline underline-offset-4 ${className}`}
+                className={`text-2xl font-bold ${className}`}
                 {...rest}>
                 {label}
             </label>

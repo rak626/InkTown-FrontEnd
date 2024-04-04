@@ -13,7 +13,11 @@ const OrderCreateForm = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm()
+	} = useForm({
+		defaultValues: {
+			quantity: 1,
+		}
+	})
 	const token = useSelector((state) => state.auth.token)
 	const mutation = useMutation({
 		mutationKey: ['creating Order'],
@@ -171,6 +175,26 @@ const OrderCreateForm = () => {
 						{errors.squareFeet && (
 							<span className="text-red-500">
 								Squre Feet is required
+							</span>
+						)}
+					</div>
+					<div className="mb-4">
+						<label
+							htmlFor="Quantity"
+							className="block text-gray-700 font-semibold mb-2"
+						>
+							Square Feet
+						</label>
+						<input
+							type="number"
+							id="quantity"
+							name="quantity"
+							{...register('quantity', { required: true })}
+							className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+						/>
+						{errors.quantity && (
+							<span className="text-red-500">
+								Quantity is required
 							</span>
 						)}
 					</div>
