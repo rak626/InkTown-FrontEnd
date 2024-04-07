@@ -45,7 +45,7 @@ const OrderCreateForm = () => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className="flex flex-col w-2/3 mx-auto p-4 bg-white rounded-md mt-14">
+			<div className="flex flex-col w-2/3 mx-auto p-4 bg-gray-200 rounded-md mt-14">
 				<div className='w-full'>
 					{!isCustomer ? (
 						<div>

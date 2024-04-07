@@ -28,7 +28,7 @@ function OrderTabs() {
 					</button>
 				))}
 			</div>
-			<div className="bg-white p-4">
+			<div className="bg-gray-200 p-4">
 				{activeTab === tabs[0] && <OrderDetails />}
 				{activeTab === tabs[1] && <OrderFlow />}
 				{activeTab === tabs[2] && <Assign />}

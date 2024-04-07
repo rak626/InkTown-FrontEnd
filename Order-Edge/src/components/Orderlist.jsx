@@ -61,7 +61,7 @@ function Orderlist() {
 				<thead className="bg-gray-50">
 					<TableHeaderRow colList={colList} />
 				</thead>
-				<tbody className="bg-white divide-y divide-gray-200">
+				<tbody className=" bg-gray-200 divide-y divide-gray-200">
 					{orderList?.map((orderData, index) => (
 						<tr key={orderData.orderId}>
 							<TableRow orderData={orderData} index={index + 1} />

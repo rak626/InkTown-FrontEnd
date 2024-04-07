@@ -31,7 +31,7 @@ const OrderDetails = () => {
 	}`
 
 	return (
-		<div className="p-6 bg-white rounded-lg shadow-md border border-gray-200">
+		<div className="p-6 bg-gray-200 rounded-lg shadow-md border border-gray-200">
 			<h1 className="text-2xl font-bold text-gray-700 mb-4">
 				Order Id :{' '}
 				<span className="font-normal"> {order?.orderId}</span>

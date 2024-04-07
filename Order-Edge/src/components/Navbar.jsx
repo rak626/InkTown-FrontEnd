@@ -52,102 +52,104 @@ function Navbar() {
 		navigate('/login')
 	}
 	return (
-		<nav className="w-full flex justify-between items-center gap-8 bg-gray-200">
-			<div className="left flex justify-between w-2/3 mx-8">
-				<div className="">
-					<Link to="/home" className="logo">
-						<img
-							src={Logo}
-							alt="InkTown"
-							className="w-20 h-20 rounded-full object-cover"
-						/>
-					</Link>
-				</div>
-				<div className="flex items-center">
-					<ul className="flex space-x-4 items-center">
-						{navLinks?.map((item, index) =>
-							item.active ? (
-								<li key={index}>
-									<NavLink
-										to={item.slug}
-										className={({ isActive }) =>
-											` hover:bg-gray-300 transition duration-300 ease-out px-2 py-1 rounded ${
-												isActive
-													? `text-orange-700`
-													: `text-gray-700`
-											} `
-										}
-									>
-										{item.title}
-									</NavLink>
-								</li>
-							) : null
-						)}
-					</ul>
-				</div>
-			</div>
-			<div className="right w-1/3 ml-8">
-				{isAuthenticated ? (
-					<div className="flex justify-center items-center gap-12">
-						<Link to="/orders/createOrder">
-							<Button className="bg-[#f22756] hover:bg-red-800 transition duration-300 ease-in-out hover:scale-105">
-								Create Order
-							</Button>
+		<nav className="w-full ">
+			<div className="flex justify-between items-center gap-8">
+				<div className="left flex justify-between w-2/3 mx-8">
+					<div className="">
+						<Link to="/home" className="logo">
+							<img
+								src={Logo}
+								alt="InkTown"
+								className="w-20 h-20 rounded-full object-cover"
+							/>
 						</Link>
-						<div className="relative inline-block ml-4 p-4">
-							<button
-								onClick={() => setIsOpen(!isOpen)}
-								className="text-gray-700 hover:bg-gray-300 px-2 py-1 rounded flex items-center focus:outline-none transition duration-300 ease-out hover:scale-110"
-							>
-								<span className="text-gray-700">
-									{curUser.username}
-								</span>
-							</button>
-							{isOpen && (
-								<ul
-									className="w-full text-center absolute bg-white shadow list-none py-2"
-									onMouseLeave={() => setIsOpen(false)}
-								>
-									<li>
-										<Link
-											to="/profile"
-											className="text-gray-700 hover:bg-gray-300 px-2 py-1 rounded block"
-										>
-											Profile
-										</Link>
-									</li>
-									<li
-										className="text-gray-700 hover:bg-gray-300 px-2 py-1 rounded block"
-										onClick={handleLogout}
-									>
-										Logout
-									</li>
-								</ul>
-							)}
-						</div>
 					</div>
-				) : (
-					<ul className="flex justify-center items-center gap-4">
-						{authLinks?.map((item, index) =>
-							item.active ? (
-								<li key={index}>
-									<NavLink
-										to={item.slug}
-										className={({ isActive }) =>
-											` hover:bg-gray-300 ${
-												isActive
-													? `text-orange-700`
-													: `text-gray-700`
-											} px-2 py-1 rounded`
-										}
+					<div className="flex items-center">
+						<ul className="flex space-x-4 items-center">
+							{navLinks?.map((item, index) =>
+								item.active ? (
+									<li key={index}>
+										<NavLink
+											to={item.slug}
+											className={({ isActive }) =>
+												` hover:bg-gray-300 transition duration-300 ease-out px-2 py-1 rounded ${
+													isActive
+														? `text-orange-700`
+														: `text-gray-700`
+												} `
+											}
+										>
+											{item.title}
+										</NavLink>
+									</li>
+								) : null
+							)}
+						</ul>
+					</div>
+				</div>
+				<div className="right w-1/3 ml-8">
+					{isAuthenticated ? (
+						<div className="flex justify-center items-center gap-12">
+							<Link to="/orders/createOrder">
+								<Button className="bg-[#f22756] hover:bg-red-800 transition duration-300 ease-in-out hover:scale-105">
+									Create Order
+								</Button>
+							</Link>
+							<div className="relative inline-block ml-4 p-4">
+								<button
+									onClick={() => setIsOpen(!isOpen)}
+									className="text-gray-700 hover:bg-gray-300 px-2 py-1 rounded flex items-center focus:outline-none transition duration-300 ease-out hover:scale-110"
+								>
+									<span className="text-gray-700">
+										{curUser.username}
+									</span>
+								</button>
+								{isOpen && (
+									<ul
+										className="w-full text-center absolute bg-gray-200 shadow list-none py-2"
+										onMouseLeave={() => setIsOpen(false)}
 									>
-										{item.title}
-									</NavLink>
-								</li>
-							) : null
-						)}
-					</ul>
-				)}
+										<li>
+											<Link
+												to="/profile"
+												className="text-gray-700 hover:bg-gray-300 px-2 py-1 rounded block"
+											>
+												Profile
+											</Link>
+										</li>
+										<li
+											className="text-gray-700 hover:bg-gray-300 px-2 py-1 rounded block"
+											onClick={handleLogout}
+										>
+											Logout
+										</li>
+									</ul>
+								)}
+							</div>
+						</div>
+					) : (
+						<ul className="flex justify-center items-center gap-4">
+							{authLinks?.map((item, index) =>
+								item.active ? (
+									<li key={index}>
+										<NavLink
+											to={item.slug}
+											className={({ isActive }) =>
+												` hover:bg-gray-300 ${
+													isActive
+														? `text-orange-700`
+														: `text-gray-700`
+												} px-2 py-1 rounded`
+											}
+										>
+											{item.title}
+										</NavLink>
+									</li>
+								) : null
+							)}
+						</ul>
+					)}
+				</div>
 			</div>
 		</nav>
 	)
