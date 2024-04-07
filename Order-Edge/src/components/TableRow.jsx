@@ -24,7 +24,7 @@ function TableRow({ orderData = {}, index = 0 }) {
 				{orderData?.isUrgent ? 'Yes' : 'No'}
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap">
-				<p>{selectedOption.displayValue}</p>
+				<p>{selectedOption?.displayValue}</p>
 			</td>
 			<td className="px-6 py-4 whitespace-nowrap">
 				<p>{moment(orderData?.createdAt).calendar()}</p>

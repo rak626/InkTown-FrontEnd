@@ -7,6 +7,7 @@ const Dropdown = ({
     width = 'w-full',
     className = '',
 }) => {
+    console.log(options)
     return (
         <select
             onChange={onChangeHandler}

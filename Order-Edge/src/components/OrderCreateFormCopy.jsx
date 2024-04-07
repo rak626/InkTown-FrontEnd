@@ -5,7 +5,7 @@ import { createOrderPostReq } from '../utils/apis'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-const OrderCreateForm = () => {
+const OrderCreateFormCopy = () => {
 	const navigate = useNavigate()
 	const curUser = useSelector((state) => state.auth.curUser)
 	const isCustomer = curUser.role === 'ROLE_CUST'
@@ -264,4 +264,4 @@ const OrderCreateForm = () => {
 		</form>
 	)
 }
-export default OrderCreateForm
+export default OrderCreateFormCopy

@@ -41,12 +41,12 @@ function Footer() {
                                         className='hover:underline'
                                         target='_blank'
                                         rel='noreferrer'>
-                                        Github
+                                        Facebook
                                     </a>
                                 </li>
                                 <li>
                                     <Link to='/' className='hover:underline'>
-                                        Discord
+                                        Twitter
                                     </Link>
                                 </li>
                             </ul>
