@@ -41,11 +41,12 @@ const Assign = () => {
 		return <Error errorMsg={error} />
 	}
 	return (
-		<div className="w-2/6 flex gap-5 p-4 rounded border border-spacing-4 border-red-300">
+		<div className="w-2/6 flex gap-5 p-4 rounded border border-spacing-4 border-gray-300">
 			<Dropdown
 				defaultOption={selectedOption}
 				options={selections}
 				onChangeHandler={handleSelectChange}
+				className='bg-gray-200'
 			/>
 			<Button
 				onClick={handleButtonClick}
